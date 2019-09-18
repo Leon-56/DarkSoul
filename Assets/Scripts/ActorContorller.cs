@@ -23,7 +23,7 @@ public class ActorContorller : MonoBehaviour {
 	private bool canAttack = true;
 	private Vector3 deltaPos;
 
-	private bool leftIsShield = true;
+	public bool leftIsShield = true;
 
 	void Awake () {
 		IUserInput[] inputs = GetComponents<IUserInput>();
@@ -74,13 +74,18 @@ public class ActorContorller : MonoBehaviour {
 			anim.SetTrigger("attack");
 		}
 
-		if(CheckState("ground") && leftIsShield) {
-			if(pi.defense)
+		if(leftIsShield) {
+			if(CheckState("ground")) {
+				anim.SetBool("defense", pi.defense);
 				anim.SetLayerWeight(anim.GetLayerIndex("defense"), 1);
-			else
+			}
+			else {
 				anim.SetLayerWeight(anim.GetLayerIndex("defense"), 0);
+			}
 		}
-		anim.SetLayerWeight(anim.GetLayerIndex("defense"), 0);
+		else {
+			anim.SetLayerWeight(anim.GetLayerIndex("defense"), 0);
+		}
 
 		if(camcon.lockState == false) {
 			//设置角色朝向
@@ -190,6 +195,10 @@ public class ActorContorller : MonoBehaviour {
 		if (CheckState("attack1hC")) {
 			deltaPos += (deltaPos + (Vector3)_deltaPos) / 2.0f;
 		}
+	}
+
+	public void OnHitEnter() {
+		pi.inputEnable = false;
 	}
 
 }

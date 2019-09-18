@@ -11,6 +11,7 @@ public class CameraController : MonoBehaviour {
 	public float cameraDampValue = 0.05f;
 	public Image lockDot;
 	public bool lockState;
+	public bool IsAI = false;
 
 	private GameObject playerHandle;
 	private GameObject cameraHandle;
@@ -28,11 +29,15 @@ public class CameraController : MonoBehaviour {
 		ActorContorller ac = playerHandle.GetComponent<ActorContorller> ();
 		model = ac.model;
 		pi = ac.pi;
-		camera1 = Camera.main.gameObject;
-		lockDot.enabled = false;
+
+		if(!IsAI) {
+			camera1 = Camera.main.gameObject;
+			lockDot.enabled = false;
+			Cursor.lockState = CursorLockMode.Locked;
+		}
+
 		lockState = false;
 
-		Cursor.lockState = CursorLockMode.Locked;
 	}
 	
 	
@@ -56,48 +61,32 @@ public class CameraController : MonoBehaviour {
 			cameraHandle.transform.LookAt(lockTarget.obj.transform);
 		}
 
-		camera1.transform.position = Vector3.SmoothDamp(camera1.transform.position, transform.position, ref cameraMoveVolecity, cameraDampValue);
-		//camera1.transform.eulerAngles = transform.eulerAngles;
-		camera1.transform.LookAt(cameraHandle.transform);
-	}
-
-	public void LockUnlock() {
-
-			Vector3 modelOrigin1 = model.transform.position;
-			Vector3 modelOrigin2 = modelOrigin1 + new Vector3(0, 1, 0);
-			Vector3 boxCenter = modelOrigin2 + model.transform.forward * 5.0f;
-			Collider[] cols = Physics.OverlapBox(boxCenter, new Vector3(0.5f, 0.5f, 5f), model.transform.rotation, LayerMask.GetMask("Enemy"));
-
-			if(cols.Length == 0) {
-				lockTarget = null;
-				lockDot.enabled = false;
-				lockState = false;
-			}
-			else {
-				foreach(var col in cols) {
-					if(lockTarget != null && lockTarget.obj == col.gameObject) {
-						lockTarget = null;
-						lockDot.enabled = false;
-						lockState = false;
-						break;
-					}
-					lockTarget = new LockTarget(col.gameObject, col.bounds.extents.y);
-					lockDot.enabled = true;
-					lockState = true;
-					break;
-				}
-			}
+		if(!IsAI) {
+			camera1.transform.position = Vector3.SmoothDamp(camera1.transform.position, transform.position, ref cameraMoveVolecity, cameraDampValue);
+			//camera1.transform.eulerAngles = transform.eulerAngles;
+			camera1.transform.LookAt(cameraHandle.transform);
+		}
 	}
 
 	void Update() {
 		if(lockTarget != null) {
-			lockDot.rectTransform.position = Camera.main.WorldToScreenPoint(lockTarget.obj.transform.position + new Vector3(0, lockTarget.halfHeight, 0));
+			if(!IsAI) {
+				lockDot.rectTransform.position = Camera.main.WorldToScreenPoint(lockTarget.obj.transform.position + new Vector3(0, lockTarget.halfHeight, 0));
+			}
 			if(Vector3.Distance(model.transform.position, lockTarget.obj.transform.position) > 10.0f) {
-				lockTarget = null;
-				lockDot.enabled = false;
-				lockState = false;
+				LockProcessA(null, false, false, IsAI);
 			}
 		}
+	}
+
+	private void LockProcessA(LockTarget _lockTarget, bool _lockDotEnable, bool _lockState, bool _isAI) {
+		lockTarget = _lockTarget;
+
+		if(!_isAI) {
+			lockDot.enabled = _lockDotEnable;
+		}
+
+		lockState = _lockState;
 	}
 
 	private class LockTarget {
@@ -109,5 +98,26 @@ public class CameraController : MonoBehaviour {
 		}
 	}
 
+	public void LockUnlock() {
+
+			Vector3 modelOrigin1 = model.transform.position;
+			Vector3 modelOrigin2 = modelOrigin1 + new Vector3(0, 1, 0);
+			Vector3 boxCenter = modelOrigin2 + model.transform.forward * 5.0f;
+			Collider[] cols = Physics.OverlapBox(boxCenter, new Vector3(0.5f, 0.5f, 5f), model.transform.rotation, LayerMask.GetMask(IsAI ? "Player" : "Enemy"));
+
+			if(cols.Length == 0) {
+				LockProcessA(null, false, false, IsAI);
+			}
+			else {
+				foreach(var col in cols) {
+					if(lockTarget != null && lockTarget.obj == col.gameObject) {
+						LockProcessA(null, false, false, IsAI);
+						break;
+					}
+					LockProcessA(new LockTarget(col.gameObject, col.bounds.extents.y), true, true, IsAI);
+					break;
+				}
+			}
+	}
 
 }
