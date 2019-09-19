@@ -192,13 +192,19 @@ public class ActorContorller : MonoBehaviour {
 	}
 
 	public void OnUpdateRM(object _deltaPos) {
-		if (CheckState("attack1hC")) {
+		//print("111111");
+		if (CheckState("attack1hC") || CheckState("attack1hC 0")) {
 			deltaPos += (deltaPos + (Vector3)_deltaPos) / 2.0f;
 		}
 	}
 
 	public void OnHitEnter() {
 		pi.inputEnable = false;
+		//planarVec = Vector3.zero;
+	}
+
+	public void IssueTrigger(string triggerName) {
+		anim.SetTrigger(triggerName);
 	}
 
 }

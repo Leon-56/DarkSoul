@@ -30,29 +30,6 @@ public class KeyboardInput : IUserInput {
 	public float mouseSensitivityX = 1.5f;
 	public float mouseSensitivityY = 1.2f;
 
-
-	// [Header("===== Output signals =====")]
-	// public float Dup;
-	// public float Dright;
-	// public float Jup;
-	// public float Jright;
-	// public float Dmag;
-	// public Vector3 Dvec;
-	// public bool run;
-	// public bool jump;
-	// private bool lastJump;
-	// public bool attack;
-	// private bool lastAttack;
-
-	// [Header("===== Others =====")]
-	// public bool inputEnable = true;
-
-	// private float targetDup;
-	// private float targetDright;
-
-	// private float velocityDup;
-	// private float velocityDright;
-
 	private Vector2 tempDAxis;
 	
 	void Update () {
@@ -94,7 +71,7 @@ public class KeyboardInput : IUserInput {
 		roll = buttonA.OnReleased && buttonA.IsDelaying;
 
 		defense = buttonD.IsPressing;
-		//attack = buttonC.OnPressed;
+		rb = buttonC.OnPressed;
 
 	}
 
