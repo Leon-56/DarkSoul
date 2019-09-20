@@ -9,17 +9,17 @@ public class JoystickInput : IUserInput {
     [Header("===== Joystick Settings =====")]
     public string axisX = "axisX";
     public string axisY = "axisY";
-    public string axisJright = "axis4";
-    public string axisJup = "axis5";
+    public string axisJright = "axis3";
+    public string axisJup = "axis6";
     public string btn0 = "btn0";
     public string btn1 = "btn1";
     public string btn2 = "btn2";
     public string btn3 = "btn3";
-	public string btnRT = "axis9";
-	public string btnRB = "";
-	public string btnLT = "axis10";
-	public string btnLB = "";
-	public string btnJstick = "btn9";
+	public string btnRT = "btn7";
+	public string btnRB = "btn5";
+	public string btnLT = "btn6";
+	public string btnLB = "btn4";
+	public string btnJstick = "btn11";
 
     
 	public MyButton buttonA = new MyButton();
@@ -47,10 +47,12 @@ public class JoystickInput : IUserInput {
 		//print(buttonJstick.OnPressed);
 
         Jup = -1 * Input.GetAxis(axisJup);
+		print(axisJup);
 		Jright = Input.GetAxis(axisJright);
+		print(axisJright);
 
         //输入信号转换为二维信号
-		targetDup = Input.GetAxis(axisY);
+		targetDup = -1 * Input.GetAxis(axisY);
 		targetDright = Input.GetAxis(axisX);
 
 		//输入锁死
