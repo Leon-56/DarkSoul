@@ -47,9 +47,9 @@ public class JoystickInput : IUserInput {
 		//print(buttonJstick.OnPressed);
 
         Jup = -1 * Input.GetAxis(axisJup);
-		print(axisJup);
+		//print(axisJup);
 		Jright = Input.GetAxis(axisJright);
-		print(axisJright);
+		//print(axisJright);
 
         //输入信号转换为二维信号
 		targetDup = -1 * Input.GetAxis(axisY);
@@ -74,7 +74,7 @@ public class JoystickInput : IUserInput {
 		jump = buttonA.OnPressed && buttonA.IsExtending;
 		roll = buttonA.OnReleased && buttonA.IsDelaying;
 
-		defense = buttonD.IsPressing;
+		defense = buttonLB.IsPressing;
 		//attack = buttonC.OnPressed;
 		rb = buttonRB.OnPressed;
 		rt = buttonRT.OnPressed;

@@ -65,13 +65,15 @@ public class ActorContorller : MonoBehaviour {
 			canAttack = false;
 		}
 
-		if ((pi.rb || pi.lb) && (CheckState("ground") || CheckStateTag("attack")) && canAttack) {
-			if(pi.rb)
+		if ((pi.rb || pi.lb) && (CheckState("ground") || (CheckStateTag("attackR") || CheckStateTag("attackL"))) && canAttack) {
+			if(pi.rb) {
 				anim.SetBool("R0L1", false);
-			else if(pi.lb)
+				anim.SetTrigger("attack");
+			}
+			else if(pi.lb && !leftIsShield) {
 				anim.SetBool("R0L1", true);
-			
-			anim.SetTrigger("attack");
+				anim.SetTrigger("attack");
+			}
 		}
 
 		if(leftIsShield) {
@@ -116,13 +118,13 @@ public class ActorContorller : MonoBehaviour {
 		deltaPos = Vector3.zero;
 	}
 
-	private bool CheckState(string stateName, string layerName = "Base Layer") {
+	public bool CheckState(string stateName, string layerName = "Base Layer") {
 		int layerIndex = anim.GetLayerIndex(layerName);
 		bool result = anim.GetCurrentAnimatorStateInfo(layerIndex).IsName(stateName);
 		return result;
 	}
 
-	private bool CheckStateTag(string tagName, string layerName = "Base Layer") {
+	public bool CheckStateTag(string tagName, string layerName = "Base Layer") {
 		int layerIndex = anim.GetLayerIndex(layerName);
 		bool result = anim.GetCurrentAnimatorStateInfo(layerIndex).IsTag(tagName);
 		return result;
@@ -191,6 +193,10 @@ public class ActorContorller : MonoBehaviour {
 		//anim.SetLayerWeight(anim.GetLayerIndex("attack"), currentWeight);
 	}
 
+	public void OnAttackExit() {
+		model.SendMessage("WeaponDisable");
+	}
+
 	public void OnUpdateRM(object _deltaPos) {
 		//print("111111");
 		if (CheckState("attack1hC") || CheckState("attack1hC 0")) {
@@ -206,5 +212,6 @@ public class ActorContorller : MonoBehaviour {
 	public void IssueTrigger(string triggerName) {
 		anim.SetTrigger(triggerName);
 	}
+
 
 }

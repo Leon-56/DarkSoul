@@ -139,7 +139,7 @@ ModelImporter:
     400130: mixamorig:Spine1
     400132: mixamorig:Spine2
     400134: //RootNode
-    7400000: mixamo.com
+    7400000: jab
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -170,7 +170,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
+      name: jab
       takeName: mixamo.com
       firstFrame: 0
       lastFrame: 29
