@@ -77,7 +77,7 @@ public class ActorContorller : MonoBehaviour {
 		}
 
 		if(leftIsShield) {
-			if(CheckState("ground")) {
+			if(CheckState("ground") || CheckState("block")) {
 				anim.SetBool("defense", pi.defense);
 				anim.SetLayerWeight(anim.GetLayerIndex("defense"), 1);
 			}
@@ -207,6 +207,15 @@ public class ActorContorller : MonoBehaviour {
 	public void OnHitEnter() {
 		pi.inputEnable = false;
 		//planarVec = Vector3.zero;
+	}
+
+	public void OnBlockEnter() {
+		pi.inputEnable = false;
+	}
+
+	public void OnDieEnter() {
+		pi.inputEnable = false;
+		planarVec = Vector3.zero;
 	}
 
 	public void IssueTrigger(string triggerName) {

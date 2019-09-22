@@ -17,7 +17,7 @@ public class BattleManager : IActorManagerInterface {
 
     void OnTriggerEnter(Collider col) {
         if(col.tag == "Weapon") {
-            am.DoDamage();
+            am.TryDoDamage();
         }
     }
 

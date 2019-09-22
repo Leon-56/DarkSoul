@@ -33,8 +33,45 @@ public class ActorManager : MonoBehaviour {
         return tempInstance;
     }
 
-    public void DoDamage() {
-        ac.IssueTrigger("hit");
+    public void TryDoDamage() {
+        // if(sm.HP > 0)
+        //     sm.AddHP(-5);
+        if(sm.isDefense) {
+            // Attack should be blocked.
+            Block();
+        }
+        else {
+            if(sm.HP == 0) {
+                // Alread dead.
+            }
+            else {
+                sm.AddHP(-5);
+                if(sm.HP <= 0) {
+                    sm.am.Hit();
+                }
+                else {
+                    sm.am.Die();
+                }
+            }
+        }
+    }
+
+    public void Block() {
+        ac.IssueTrigger("block");
+    }
+
+    public void Hit() {
+        if(sm.HP > 0)
+            ac.IssueTrigger("hit");
+    }
+
+    public void Die() {
+        ac.IssueTrigger("die");
+        ac.pi.inputEnable = false;
+        if(ac.camcon.lockState == true) {
+            ac.camcon.LockUnlock();
+        }
+        ac.camcon.enabled = false;
     }
 
 }
