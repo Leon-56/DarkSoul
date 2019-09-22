@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CapsuleCollider))]
-public class BattleManager : MonoBehaviour {
-
-    public ActorManager am;
+public class BattleManager : IActorManagerInterface {
 
     private CapsuleCollider defCol;
 
