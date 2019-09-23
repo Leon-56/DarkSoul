@@ -65,7 +65,8 @@ public class ActorContorller : MonoBehaviour {
 			canAttack = false;
 		}
 
-		if ((pi.rb || pi.lb) && (CheckState("ground") || (CheckStateTag("attackR") || CheckStateTag("attackL"))) && canAttack) {
+		//attack
+		if ((pi.rb || pi.lb) && (CheckState("ground") || CheckStateTag("attackR") || CheckStateTag("attackL")) && canAttack) {
 			if(pi.rb) {
 				anim.SetBool("R0L1", false);
 				anim.SetTrigger("attack");
@@ -76,12 +77,31 @@ public class ActorContorller : MonoBehaviour {
 			}
 		}
 
+		//
+		if((pi.rt || pi.lt) && (CheckState("ground") || CheckStateTag("attackR") || CheckStateTag("attackL")) && canAttack) {
+			if(pi.rt) {
+				// do right heavy attack
+
+			}
+			else {
+				if(!leftIsShield) {
+					//do left heavy attack
+
+				}
+				else {
+					anim.SetTrigger("counterBack");
+				}
+
+			}
+		}
+
 		if(leftIsShield) {
 			if(CheckState("ground") || CheckState("block")) {
 				anim.SetBool("defense", pi.defense);
 				anim.SetLayerWeight(anim.GetLayerIndex("defense"), 1);
 			}
 			else {
+				anim.SetBool("defense", false);
 				anim.SetLayerWeight(anim.GetLayerIndex("defense"), 0);
 			}
 		}
@@ -214,6 +234,16 @@ public class ActorContorller : MonoBehaviour {
 	}
 
 	public void OnDieEnter() {
+		pi.inputEnable = false;
+		planarVec = Vector3.zero;
+	}
+
+	public void OnStunnedEnter() {
+		pi.inputEnable = false;
+		planarVec = Vector3.zero;
+	}
+
+	public void OnCounterBackEnter() {
 		pi.inputEnable = false;
 		planarVec = Vector3.zero;
 	}

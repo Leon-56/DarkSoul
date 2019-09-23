@@ -21,7 +21,7 @@ public class StateManager : IActorManagerInterface {
 
     [Header("2nd order state flag")]
     public bool isAllowDefense;
-    public bool isCanAttack;
+    public bool isImmortal;
 
     void Start() {
         HP = HPMax;
@@ -42,6 +42,7 @@ public class StateManager : IActorManagerInterface {
         isAllowDefense = isGround || isBlock;
 
         isDefense = isAllowDefense && am.ac.CheckState("defense", "defense");
+        isImmortal = isRoll || isJab;
     } 
     public void AddHP(float value) {
         HP += value;

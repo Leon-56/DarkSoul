@@ -36,7 +36,10 @@ public class ActorManager : MonoBehaviour {
     public void TryDoDamage() {
         // if(sm.HP > 0)
         //     sm.AddHP(-5);
-        if(sm.isDefense) {
+        if(sm.isImmortal) {
+
+        }
+        else if(sm.isDefense) {
             // Attack should be blocked.
             Block();
         }
