@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour {
 
+    public WeaponManager wm;
 
 }

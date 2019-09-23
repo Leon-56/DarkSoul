@@ -33,30 +33,54 @@ public class ActorManager : MonoBehaviour {
         return tempInstance;
     }
 
-    public void TryDoDamage() {
+    public void SetIsCounterBack(bool value) {
+        sm.isCounterBackEnable = value;
+    }
+
+    public void TryDoDamage(WeaponController targetWc, bool attackValid, bool counterValid) {
         // if(sm.HP > 0)
         //     sm.AddHP(-5);
-        if(sm.isImmortal) {
 
+        if(sm.isCounterBackSucess) {
+            if(counterValid)
+                targetWc.wm.am.Stunned();
+        }
+        else if(sm.isCounterBackFailure) {
+            if(attackValid)
+                HitOrDie(false);
+        }
+        else if(sm.isImmortal) {
         }
         else if(sm.isDefense) {
             // Attack should be blocked.
             Block();
         }
         else {
-            if(sm.HP == 0) {
+            if(attackValid)
+                HitOrDie(true);
+        }
+    }
+
+    public void HitOrDie(bool doHitAnimation) {
+        if(sm.HP == 0) {
                 // Alread dead.
             }
             else {
                 sm.AddHP(-5);
                 if(sm.HP <= 0) {
-                    sm.am.Hit();
+                    Die();
                 }
                 else {
-                    sm.am.Die();
+                    if(doHitAnimation) {
+                        Hit();
+                    }
+                    // do some VFX, like splatter blood
                 }
             }
-        }
+    }
+
+    public void Stunned() {
+        ac.IssueTrigger("stunned");
     }
 
     public void Block() {

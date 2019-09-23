@@ -175,6 +175,7 @@ public class ActorContorller : MonoBehaviour {
 		lockPanar = false;
 		canAttack = true;
 		trackDirection = false;
+		model.SendMessage("CounterBackDisable");
 	}
 
 	public void OnFallEnter() {
@@ -227,6 +228,8 @@ public class ActorContorller : MonoBehaviour {
 	public void OnHitEnter() {
 		pi.inputEnable = false;
 		//planarVec = Vector3.zero;
+		model.SendMessage("WeaponDisable");
+		model.SendMessage("CounterBackDisable");
 	}
 
 	public void OnBlockEnter() {
@@ -236,6 +239,8 @@ public class ActorContorller : MonoBehaviour {
 	public void OnDieEnter() {
 		pi.inputEnable = false;
 		planarVec = Vector3.zero;
+		model.SendMessage("WeaponDisable");
+		model.SendMessage("CounterBackDisable");
 	}
 
 	public void OnStunnedEnter() {

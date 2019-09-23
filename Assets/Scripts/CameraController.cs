@@ -76,6 +76,9 @@ public class CameraController : MonoBehaviour {
 			if(Vector3.Distance(model.transform.position, lockTarget.obj.transform.position) > 10.0f) {
 				LockProcessA(null, false, false, IsAI);
 			}
+			else if(lockTarget.am != null && lockTarget.am.sm.isDie) {
+				LockProcessA(null, false, false, IsAI);
+			}
 		}
 	}
 
@@ -92,9 +95,11 @@ public class CameraController : MonoBehaviour {
 	private class LockTarget {
 		public GameObject obj;
 		public float halfHeight;
+		public ActorManager am;
 		public LockTarget(GameObject obj, float halfHeight) {
 			this.obj = obj;
 			this.halfHeight = halfHeight;
+			am = obj.GetComponent<ActorManager> ();
 		}
 	}
 
