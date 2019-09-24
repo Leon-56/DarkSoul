@@ -1,0 +1,140 @@
+fileFormatVersion: 2
+guid: 8ba9ddccf1b86c8419ba1fca791b7009
+timeCreated: 1513483097
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: SM_Veh_Plane_England_01_CockPit
+    100004: SM_Veh_Plane_England_01_CockPit_Stick
+    100006: SM_Veh_Plane_England_01_Flap_Tail
+    100008: SM_Veh_Plane_England_01_Flap_Tail_fl
+    100010: SM_Veh_Plane_England_01_Flap_Tail_fr
+    100012: SM_Veh_Plane_England_01_Flap_Tail_lr
+    100014: SM_Veh_Plane_England_01_Flap_Tail_rr
+    100016: SM_Veh_Plane_England_01_Glass
+    100018: SM_Veh_Plane_England_01_Prop
+    100020: SM_Veh_Plane_England_01_Wheel_l
+    100022: SM_Veh_Plane_England_01_Wheel_r
+    100024: group1
+    400000: //RootNode
+    400002: SM_Veh_Plane_England_01_CockPit
+    400004: SM_Veh_Plane_England_01_CockPit_Stick
+    400006: SM_Veh_Plane_England_01_Flap_Tail
+    400008: SM_Veh_Plane_England_01_Flap_Tail_fl
+    400010: SM_Veh_Plane_England_01_Flap_Tail_fr
+    400012: SM_Veh_Plane_England_01_Flap_Tail_lr
+    400014: SM_Veh_Plane_England_01_Flap_Tail_rr
+    400016: SM_Veh_Plane_England_01_Glass
+    400018: SM_Veh_Plane_England_01_Prop
+    400020: SM_Veh_Plane_England_01_Wheel_l
+    400022: SM_Veh_Plane_England_01_Wheel_r
+    400024: group1
+    2300000: //RootNode
+    2300002: SM_Veh_Plane_England_01_CockPit
+    2300004: SM_Veh_Plane_England_01_CockPit_Stick
+    2300006: SM_Veh_Plane_England_01_Flap_Tail
+    2300008: SM_Veh_Plane_England_01_Flap_Tail_fl
+    2300010: SM_Veh_Plane_England_01_Flap_Tail_fr
+    2300012: SM_Veh_Plane_England_01_Flap_Tail_lr
+    2300014: SM_Veh_Plane_England_01_Flap_Tail_rr
+    2300016: SM_Veh_Plane_England_01_Glass
+    2300018: SM_Veh_Plane_England_01_Prop
+    2300020: SM_Veh_Plane_England_01_Wheel_l
+    2300022: SM_Veh_Plane_England_01_Wheel_r
+    3300000: //RootNode
+    3300002: SM_Veh_Plane_England_01_CockPit
+    3300004: SM_Veh_Plane_England_01_CockPit_Stick
+    3300006: SM_Veh_Plane_England_01_Flap_Tail
+    3300008: SM_Veh_Plane_England_01_Flap_Tail_fl
+    3300010: SM_Veh_Plane_England_01_Flap_Tail_fr
+    3300012: SM_Veh_Plane_England_01_Flap_Tail_lr
+    3300014: SM_Veh_Plane_England_01_Flap_Tail_rr
+    3300016: SM_Veh_Plane_England_01_Glass
+    3300018: SM_Veh_Plane_England_01_Prop
+    3300020: SM_Veh_Plane_England_01_Wheel_l
+    3300022: SM_Veh_Plane_England_01_Wheel_r
+    4300000: SM_Veh_Plane_England_01
+    4300002: SM_Veh_Plane_England_01_Glass
+    4300004: SM_Veh_Plane_England_01_CockPit
+    4300006: SM_Veh_Plane_England_01_CockPit_Stick
+    4300008: SM_Veh_Plane_England_01_Prop
+    4300010: SM_Veh_Plane_England_01_Flap_Tail
+    4300012: SM_Veh_Plane_England_01_Wheel_l
+    4300014: SM_Veh_Plane_England_01_Wheel_r
+    4300016: SM_Veh_Plane_England_01_Flap_Tail_rr
+    4300018: SM_Veh_Plane_England_01_Flap_Tail_lr
+    4300020: SM_Veh_Plane_England_01_Flap_Tail_fl
+    4300022: SM_Veh_Plane_England_01_Flap_Tail_fr
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
