@@ -14,7 +14,6 @@ public class MySuperPlayableMixerBehaviour : PlayableBehaviour
             return;
 
         int inputCount = playable.GetInputCount ();
-        float tempSum = 0;
 
         for (int i = 0; i < inputCount; i++)
         {
@@ -23,7 +22,6 @@ public class MySuperPlayableMixerBehaviour : PlayableBehaviour
             MySuperPlayableBehaviour input = inputPlayable.GetBehaviour ();
             
             // Use the above variables to process each frame of this playable.
-            tempSum += input.myFloat * inputWeight;
         }
     }
 }

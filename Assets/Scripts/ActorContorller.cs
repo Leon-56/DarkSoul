@@ -11,7 +11,7 @@ public class ActorContorller : MonoBehaviour {
 	public float runSpeed = 2.5f;
 
 	[SerializeField]
-	private Animator anim;
+	public Animator anim;
 	private Rigidbody rigid;
 	private Vector3 planarVec;
 	private Vector3 thrustVec;
@@ -24,6 +24,9 @@ public class ActorContorller : MonoBehaviour {
 	private Vector3 deltaPos;
 
 	public bool leftIsShield = true;
+
+	public delegate void OnActionDelegate();
+	public event OnActionDelegate OnAction;
 
 	void Awake () {
 		IUserInput[] inputs = GetComponents<IUserInput>();
@@ -93,6 +96,10 @@ public class ActorContorller : MonoBehaviour {
 				}
 
 			}
+		}
+
+		if(pi.action) {
+			OnAction.Invoke ();
 		}
 
 		if(leftIsShield) {
@@ -257,5 +264,8 @@ public class ActorContorller : MonoBehaviour {
 		anim.SetTrigger(triggerName);
 	}
 
+	public void SetBool(string boolName, bool value) {
+		anim.SetBool(boolName, value);
+	}
 
 }

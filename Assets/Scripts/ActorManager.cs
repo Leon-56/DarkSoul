@@ -10,6 +10,8 @@ public class ActorManager : MonoBehaviour {
     public BattleManager bm;
     public WeaponManager wm;
     public StateManager sm;
+    public DirectorManager dm;
+    public InteractionManager im;
 
     void Awake() {
         ac = GetComponent<ActorContorller> ();
@@ -20,7 +22,18 @@ public class ActorManager : MonoBehaviour {
         bm = Bind<BattleManager> (sensor);
         wm = Bind<WeaponManager> (model);
         sm = Bind<StateManager> (gameObject);
+        dm = Bind<DirectorManager> (gameObject);
+        im = Bind<InteractionManager> (sensor);
 
+        ac.OnAction += DoAction;
+    }
+
+    public void DoAction() {
+        if(im.overlapEcastms.Count != 0) {
+            if(im.overlapEcastms[0].eventName == "frontStab") {
+                dm.PlayFrontStab("frontStab", this, im.overlapEcastms[0].am);
+            }
+        }
     }
 
     private T Bind<T>(GameObject go) where T : IActorManagerInterface {
@@ -100,5 +113,10 @@ public class ActorManager : MonoBehaviour {
         }
         ac.camcon.enabled = false;
     }
+
+    public void LockUnlockActorController(bool value) {
+        ac.SetBool("lock", value);
+    }
+
 
 }
