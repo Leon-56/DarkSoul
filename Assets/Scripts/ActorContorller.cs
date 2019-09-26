@@ -98,10 +98,6 @@ public class ActorContorller : MonoBehaviour {
 			}
 		}
 
-		if(pi.action) {
-			OnAction.Invoke ();
-		}
-
 		if(leftIsShield) {
 			if(CheckState("ground") || CheckState("block")) {
 				anim.SetBool("defense", pi.defense);
@@ -118,9 +114,11 @@ public class ActorContorller : MonoBehaviour {
 
 		if(camcon.lockState == false) {
 			//设置角色朝向
-			if (pi.Dmag > 0.1f) {
-				Vector3 targetForward = Vector3.Slerp(model.transform.forward, pi.Dvec, 0.25f);
-				model.transform.forward = targetForward;
+			if(pi.enabled) {
+				if (pi.Dmag > 0.1f) {
+					Vector3 targetForward = Vector3.Slerp(model.transform.forward, pi.Dvec, 0.25f);
+					model.transform.forward = targetForward;
+				}
 			}
 			if(!lockPanar)
 				planarVec = pi.Dmag * model.transform.forward * walkSpeed * (pi.run ? runSpeed : 1.0f);
@@ -135,7 +133,12 @@ public class ActorContorller : MonoBehaviour {
 				planarVec = pi.Dvec * walkSpeed * (pi.run ? runSpeed : 1.0f);
 		}
 
+		if(pi.action) {
+			OnAction.Invoke ();
+		}
+
 	}
+	
 
 	void FixedUpdate() {
 		//rigid.position += planarVec * Time.fixedDeltaTime * walkSpeed ;
@@ -241,6 +244,7 @@ public class ActorContorller : MonoBehaviour {
 
 	public void OnBlockEnter() {
 		pi.inputEnable = false;
+		model.SendMessage("CounterBackDisable");
 	}
 
 	public void OnDieEnter() {
@@ -258,6 +262,13 @@ public class ActorContorller : MonoBehaviour {
 	public void OnCounterBackEnter() {
 		pi.inputEnable = false;
 		planarVec = Vector3.zero;
+		model.SendMessage("CounterBackEnable");
+	}
+
+	public void OnLockEnter() {
+		pi.inputEnable = false;
+		planarVec = Vector3.zero;
+		model.SendMessage("WeaponDisable");
 	}
 
 	public void IssueTrigger(string triggerName) {

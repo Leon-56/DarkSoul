@@ -49,6 +49,7 @@ public class StateManager : IActorManagerInterface {
         isDefense = isAllowDefense && am.ac.CheckState("defense", "defense");
         isImmortal = isRoll || isJab;
         isCounterBackSucess = isCounterBackEnable;
+        //print(isCounterBackEnable);
         isCounterBackFailure = isCounterBack && !isCounterBackEnable;
     } 
 

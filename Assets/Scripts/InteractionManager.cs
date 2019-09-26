@@ -36,7 +36,7 @@ public class InteractionManager : IActorManagerInterface
         EventCasterManager[] ecastms = col.GetComponents<EventCasterManager> ();
         foreach (var ecastm in ecastms)
         {
-            if (!overlapEcastms.Contains(ecastm))
+            if (overlapEcastms.Contains(ecastm))
             {
                 overlapEcastms.Remove(ecastm);
             }
