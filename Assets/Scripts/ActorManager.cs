@@ -17,20 +17,27 @@ public class ActorManager : MonoBehaviour {
         ac = GetComponent<ActorContorller> ();
 
         GameObject model = ac.model;
-        GameObject sensor = transform.Find("sensor").gameObject;
-        
+        GameObject sensor = null;
+        try{
+            sensor = transform.Find("sensor").gameObject;
+        }catch (System.Exception ex) {
+            //
+            // If there is no "sensor" object.
+            //
+        }
         bm = Bind<BattleManager> (sensor);
         wm = Bind<WeaponManager> (model);
         sm = Bind<StateManager> (gameObject);
         dm = Bind<DirectorManager> (gameObject);
         im = Bind<InteractionManager> (sensor);
+        
 
         ac.OnAction += DoAction;
     }
 
     public void DoAction() {
         if(im.overlapEcastms.Count != 0) {
-            if(im.overlapEcastms[0].active == true)
+            if(im.overlapEcastms[0].active == true && !dm.IsPlaying())
             {
                 if(im.overlapEcastms[0].eventName == "frontStab") {
                     dm.PlayFrontStab("frontStab", this, im.overlapEcastms[0].am);
@@ -44,12 +51,24 @@ public class ActorManager : MonoBehaviour {
                         dm.PlayFrontStab("openBox", this, im.overlapEcastms[0].am);
                     }
                 }
+                else if(im.overlapEcastms[0].eventName == "leverUp") {
+                    if(BattleManager.CheckAnglePlayer(ac.model, im.overlapEcastms[0].am.gameObject, 30))
+                    {
+                        im.overlapEcastms[0].active = false;
+                        transform.position = im.overlapEcastms[0].am.transform.position + im.overlapEcastms[0].am.transform.TransformVector(im.overlapEcastms[0].offset);
+                        ac.model.transform.LookAt(im.overlapEcastms[0].am.transform, Vector3.up);
+                        dm.PlayFrontStab("leverUp", this, im.overlapEcastms[0].am);
+                    }
+                }
             }
         }
     }
 
     private T Bind<T>(GameObject go) where T : IActorManagerInterface {
         T tempInstance;
+        if(go == null)
+            return null;
+        
         tempInstance = go.GetComponent<T> ();
         if(tempInstance == null) {
             tempInstance = go.AddComponent<T> ();

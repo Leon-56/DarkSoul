@@ -26,7 +26,7 @@ public class BattleManager : IActorManagerInterface {
         GameObject receiver = am.ac.model;
 
         if(col.tag == "Weapon") {
-                am.TryDoDamage(targetWc, CheckAngleTarget(receiver, attacker, 45), CheckAnglePlayer(receiver, attacker, 30));
+                am.TryDoDamage(targetWc, CheckAngleTarget(receiver, attacker, 70), CheckAnglePlayer(receiver, attacker, 30));
         }
     }
 
