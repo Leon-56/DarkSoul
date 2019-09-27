@@ -1,3 +1,4 @@
+```
 public class Solution {
     public int MinAreaRect(int[][] points) {
         int len = 500;
@@ -21,3 +22,4 @@ public class Solution {
         return ans;
     }
 }
+```
