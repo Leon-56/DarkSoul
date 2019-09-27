@@ -11,3 +11,4 @@
 - UI(待填坑ing)
 
 ## 游戏截图
+![1](https://raw.githubusercontent.com/YuG56/DarkSoul/master/demo.png)
