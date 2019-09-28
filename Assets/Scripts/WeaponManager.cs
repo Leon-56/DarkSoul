@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class WeaponManager : IActorManagerInterface {
 
+    [SerializeField]
     private Collider weaponColL;
+    [SerializeField]
     private Collider weaponColR;
 
     public GameObject whL;
@@ -13,7 +15,7 @@ public class WeaponManager : IActorManagerInterface {
     public WeaponController wcL;
     public WeaponController wcR;
 
-    void Start() {
+    void Awake() {
 
         try {
             whL = transform.DeepFind("WeaponHandleL").gameObject;
@@ -38,6 +40,32 @@ public class WeaponManager : IActorManagerInterface {
         }
 
 
+    }
+
+    public void UpdateCollider(string side, Collider col) {
+        if(side == "L") {
+            weaponColL = col;
+        }
+        else if(side == "R") {
+            weaponColR = col;
+        }
+    }
+
+    public void UnloadWeapon(string side) {
+        if(side == "R") {
+            foreach(Transform tran in whR.transform) {
+                weaponColR = null;
+                wcR.wdata = null;
+                Destroy(tran.gameObject);
+            }
+        }
+        else if(side == "L") {
+            foreach(Transform tran in whL.transform) {
+                weaponColL = null;
+                wcL.wdata = null;
+                Destroy(tran.gameObject);
+            }
+        }
     }
 
     public WeaponController BindWeaponController(GameObject targetObj) {
@@ -78,6 +106,10 @@ public class WeaponManager : IActorManagerInterface {
 
     public void CounterBackDisable() {
         am.SetIsCounterBack(false);
+    }
+
+    public void ChangeDualHands(bool dualOn) {
+        am.ChangeDualHands(dualOn);
     }
 
 }

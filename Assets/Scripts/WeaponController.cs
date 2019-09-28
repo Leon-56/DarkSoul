@@ -7,7 +7,7 @@ public class WeaponController : MonoBehaviour {
     public WeaponManager wm;
     public WeaponData wdata;
 
-    void Awake() {
+    void Start() {
         wdata = GetComponentInChildren<WeaponData> ();
     }
 

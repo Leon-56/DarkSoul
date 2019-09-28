@@ -1,10 +1,10 @@
 {
-    "Spikes_01": {
-        "ATK": 15,
+    "Spikes": {
+        "ATK": 250,
         "DEF": 7
     },
     "Sword": {
-        "ATK": 10,
+        "ATK": 200,
         "DEF": 10
     }
 }
