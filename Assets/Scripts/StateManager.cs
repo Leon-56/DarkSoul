@@ -6,6 +6,7 @@ public class StateManager : IActorManagerInterface {
 
     public float HPMax = 25.0f;
     public float HP = 15.0f;
+    public float ATK = 10.0f;
 
     [Header("1st order state flag")]
     public bool isGround;
